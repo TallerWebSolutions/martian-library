@@ -67,9 +67,13 @@ jobs:
 
       - name: Run tests
         env:
-          PGHOST: postgres
-          PGUSER: postgres
-          PGPORT: ${{ job.services.postgres.ports[5432] }}
+          secret_key_32_encoded: "8L+WeHTWhNtEAvQzoRaYqYtl4VCwDMReh2SzicO/iCA=\n"
           RAILS_ENV: test
+          PG_HOST: localhost
+          PG_USER: "postgres"
+          PG_PASSWORD: "postgres"
+          PG_PORT: ${{ job.services.postgres.ports['5432'] }}
         run: |
+          rails db:create
+          rails db:migrate
           bundle exec rspec
