@@ -1,4 +1,4 @@
-name: FlowClimateBuild
+name: MartianLibraryBuild
 on:
   push:
     branches: [main]
@@ -38,7 +38,7 @@ jobs:
       postgres:
         image: postgres:12
         env:
-          POSTGRES_DB: flowcontrol_test
+          POSTGRES_DB: martian_library_test
           POSTGRES_USER: "postgres"
           POSTGRES_PASSWORD: "postgres"
         ports:

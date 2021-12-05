@@ -53,7 +53,6 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 
-
   config.after(:all) do
     FileUtils.rm_rf(Dir[Rails.root.join('public/uploads/tmp/*')]) if Rails.env.test?
   end

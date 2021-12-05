@@ -1,6 +1,6 @@
-import React from 'react';
-import { Query } from 'react-apollo';
-import gql from 'graphql-tag';
+import React from "react";
+import { Query } from "react-apollo";
+import gql from "graphql-tag";
 
 const LibraryQuery = gql`
   {
@@ -19,7 +19,7 @@ export default () => (
         {({ data, loading }) => (
             <div>
                 {loading
-                    ? 'loading...'
+                    ? "loading..."
                     : data.items.map(({ title, id, user }) => (
                         <div key={id}>
                             <b>{title}</b> {user ? `added by ${user.email}` : null}
