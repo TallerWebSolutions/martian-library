@@ -1,0 +1,25 @@
+require:
+  - rubocop-rails
+  - rubocop-performance
+  - rubocop-rspec
+
+AllCops:
+  TargetRubyVersion: 3.0
+  Exclude:
+    # You could specify set of files or dirs while you want to be ignored by rubocop
+    - 'vendor/**/*'
+    - 'bin/*'
+    - 'db/schema.rb'
+    - 'Gemfile.lock'
+    - !ruby/regexp /old_and_unused\.rb$/
+    - 'app/helpers/**/*'
+    - 'config/environments/**/*'
+    - 'app/jobs/**/*'
+  NewCops: enable
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/spec_helper.rb'
