@@ -15,6 +15,7 @@ gem 'sass-rails', '>= 6'
 gem 'webpacker', '~> 5.0'
 
 group :test do
+  gem 'database_cleaner'
   gem 'factory_bot_rails'
   gem 'rspec-rails'
   gem 'rubocop'

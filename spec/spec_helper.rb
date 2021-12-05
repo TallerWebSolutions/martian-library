@@ -41,6 +41,21 @@ RSpec.configure do |config|
     clear_enqueued_jobs
   end
 
+  config.before(:suite) do
+    DatabaseCleaner.clean_with(:transaction)
+  end
+
+  config.before do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.start
+    DatabaseCleaner.clean
+  end
+
+  config.after do
+    DatabaseCleaner.clean
+  end
+
+
   config.after(:all) do
     FileUtils.rm_rf(Dir[Rails.root.join('public/uploads/tmp/*')]) if Rails.env.test?
   end

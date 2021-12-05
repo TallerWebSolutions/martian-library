@@ -2,7 +2,9 @@
 
 RSpec.describe Types::QueryType do
   describe 'items' do
-    subject(:result) { MartianLibrarySchema.execute(query).as_json }
+    subject(:result) do
+      MartianLibrarySchema.execute(query).as_json
+    end
 
     let!(:items) { create_pair(:item) }
 
