@@ -18,8 +18,6 @@ Shoulda::Matchers.configure do |config|
   end
 end
 
-ActiveRecord::Migration.maintain_test_schema!
-
 RSpec.configure do |config|
   config.order = :random
   config.profile_examples = 10
