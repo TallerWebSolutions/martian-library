@@ -24,7 +24,7 @@ Item.create!(
       title: 'The Martian',
       description: 'Novel by Andy Weir about an astronaut stranded on Mars trying to survive',
       user: john,
-      image_url: 'https://upload.wikimedia.org/wikipedia/en/c/c3/The_Martian_2014.jpg'
+      image_url: 'https://m.media-amazon.com/images/I/41vTSSMKCZL.jpg'
     },
     {
       title: 'Doom',
