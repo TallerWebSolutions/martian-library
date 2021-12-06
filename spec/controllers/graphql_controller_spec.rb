@@ -1,14 +1,6 @@
 # frozen_string_literal: true
 
 RSpec.describe GraphqlController, type: :controller do
-  context 'when unauthorized' do
-    it 'returns not found' do
-      post :execute, params: { format: :json, query: '{}' }
-      expect(response).to have_http_status :not_found
-      expect(JSON.parse(response.body)['message']).to eq 'Not Found'
-    end
-  end
-
   context 'when authorized' do
     let(:query) do
       '{
