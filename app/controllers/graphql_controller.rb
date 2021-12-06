@@ -1,20 +1,22 @@
 # frozen_string_literal: true
 
 class GraphqlController < ApplicationController
-  # If accessing from outside this domain, nullify the session
-  # This allows for outside API access while preventing CSRF attacks,
-  # but you'll have to authenticate your user separately
-  # protect_from_forgery with: :null_session
+  protect_from_forgery with: :exception
+
+  before_action :current_user
 
   def execute
-    result = MartianLibrarySchema.execute(
-      params[:query],
-      variables: ensure_hash(params[:variables]),
-      # Only this line has chagned
-      context: { current_user: current_user },
-      operation_name: params[:operationName]
-    )
-    render json: result
+    if @user.present?
+      result = MartianLibrarySchema.execute(
+        params[:query],
+        variables: ensure_hash(params[:variables]),
+        context: { current_user: @user },
+        operation_name: params[:operationName]
+      )
+      render json: result
+    else
+      render json: { status: 404, message: 'Not Found', data: {} }, status: :not_found
+    end
   end
 
   private
