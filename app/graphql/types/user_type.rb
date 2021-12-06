@@ -6,8 +6,6 @@ module Types
     field :email, String, null: true
     field :full_name, String, null: false
 
-    def full_name
-      [object.first_name, object.last_name].compact.join(' ')
-    end
+    delegate :full_name, to: :object
   end
 end

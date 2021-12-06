@@ -1,19 +1,25 @@
-import React, { useState } from "react";
-import cs from "./styles";
+import React, { useState } from 'react';
+import cs from './styles';
 
 const ProcessItemForm = ({
-                             initialTitle = "",
-                             initialDescription = "",
-                             initialImageUrl = "",
+                             initialTitle = '',
+                             initialDescription = '',
+                             initialImageUrl = '',
                              onProcessItem,
                              buttonText,
-                             loading
+                             loading,
+                             errors,
                          }) => {
     const [title, setTitle] = useState(initialTitle);
     const [description, setDescription] = useState(initialDescription);
     const [imageUrl, setImageUrl] = useState(initialImageUrl);
     return (
         <div className={cs.form}>
+            {errors && (
+                <div className={cs.errors}>
+                    <div className="error">{errors.fullMessages.join('; ')}</div>
+                </div>
+            )}
             <input
                 type="text"
                 placeholder="title"
@@ -37,7 +43,7 @@ const ProcessItemForm = ({
                 onChange={e => setImageUrl(e.currentTarget.value)}
             />
             {loading ? (
-                "...Loading"
+                '...Loading'
             ) : (
                 <button
                     onClick={() => onProcessItem({ title, description, imageUrl })}

@@ -3,20 +3,14 @@
 class GraphqlController < ApplicationController
   protect_from_forgery with: :exception
 
-  before_action :current_user
-
   def execute
-    if @user.present?
-      result = MartianLibrarySchema.execute(
-        params[:query],
-        variables: ensure_hash(params[:variables]),
-        context: { current_user: @user },
-        operation_name: params[:operationName]
-      )
-      render json: result
-    else
-      render json: { status: 404, message: 'Not Found', data: {} }, status: :not_found
-    end
+    result = MartianLibrarySchema.execute(
+      params[:query],
+      variables: ensure_hash(params[:variables]),
+      context: { current_user: @user },
+      operation_name: params[:operationName]
+    )
+    render json: result
   end
 
   private
